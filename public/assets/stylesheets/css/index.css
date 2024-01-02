@@ -23,7 +23,8 @@ header nav {
   border-bottom-right-radius: 10px;
   box-shadow: 0 0 10px #2b2b2b;
 }
-header nav a, header nav a::after {
+header nav a,
+header nav a::after {
   color: #2b2b2b;
 }
 
@@ -57,6 +58,9 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   font-family: "Roboto", sans-serif;
   background-color: rgb(173, 173, 173);
   color: #efebeb;
