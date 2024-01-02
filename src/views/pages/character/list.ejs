@@ -1,0 +1,23 @@
+<main id="list">
+    <input id="search" type="search" placeholder="Rechercher un personnage" />
+    <section>
+        <h2>Liste de personnages</h2>
+        <div class="character-container">
+            <% for(const data of datas) { %>
+            <a
+                href="/liste-personnages/<%= data.id %>"
+                className="cta-modal"
+                title="vers la fiche de détail"
+            >
+                <figure>
+                    <figcaption><%= data.title1%></figcaption>
+
+                    <img src="/img/<%= data.src %>" alt="<%= data.alt %>" />
+                </figure>
+            </a>
+            <% } %>
+        </div>
+    </section>
+
+    <script src="/js/search.js"></script>
+</main>

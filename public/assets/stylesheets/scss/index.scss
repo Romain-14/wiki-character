@@ -1,0 +1,291 @@
+@use "variables" as *;
+@use "mixins" as *;
+@use "menu" as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: rgb(173, 173, 173);
+    color: $color-light;
+    font-size: 1.6rem;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 800px;
+    height: 100vh;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: $color-light;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+header,
+main,
+footer {
+    flex: 1 0 auto;
+}
+
+header,
+footer {
+    background-color: $color-dark;
+    padding: 20px;
+    height: 120px;
+    max-height: 120px;
+}
+
+footer {
+    flex-shrink: 0;
+    line-height: 4;
+    margin-top: auto;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+        font-size: 2rem;
+        text-transform: uppercase;
+    }
+
+    nav {
+        a {
+            position: relative;
+            padding: 7px;
+            margin: 8px;
+            text-transform: uppercase;
+            
+            &::after {
+                content: "";
+                position: absolute;
+                left: 5%;
+                bottom: 0;
+                width: 0;
+                height: 1px;                
+                transition: width 0.3s ease-in-out;
+            }
+            &:hover::after,
+            &.active::after {
+                width: 90%;
+            }
+        }
+    }
+}
+
+main {
+    background-color: $color-light;
+    color: $color-dark;
+    &#list {
+        padding-top: 0;
+    }
+    section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-content: baseline;
+    }
+}
+
+#list, #home {
+    h2 {
+        width: 100%;
+        text-align: center;
+        padding: 40px;
+    }
+
+    .character-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+
+    figure {
+        position: relative;
+        align-self: center;
+        img {
+            width: 180px;
+            height: 200px;
+            border: 1px solid $color-dark;
+            border-radius: 15px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .cta-modal {
+            transition: all 0.3s ease-in-out;
+            position: absolute;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            border: 1px solid $color-dark;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            color: $color-light;
+            z-index: 100;
+            background-color: $color-dark;
+            opacity: 0.8;
+            cursor: pointer;
+            .icon {
+                @include center();
+                font-size: 3rem;
+            }
+        }
+        &:hover {
+            .cta-modal {
+                transform: translate(10px, -10px);
+            }
+            img {
+                transform: scale(1.1);
+            }
+        }
+        figcaption {
+            color: $color-dark;
+            text-align: center;
+            padding: 8px 0;
+            text-transform: uppercase;
+        }
+    }
+
+    .modal {
+        @include center();
+        background-color: $color-light;
+        font-size: 2rem;        
+        z-index: 100000;
+        border-radius: 15px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+        max-width: 80vw;
+        .modal-content {
+            position: relative;
+            padding: 7px;
+            max-height: 580px;
+            overflow-y: scroll;
+        }
+        p {
+            padding: 0 15px;
+        }
+        .cta-close-modal {
+            position: absolute;
+            top: 5px;
+            right: 25px;
+            cursor: pointer;
+            background-color: $color-dark;
+            color: $color-light;
+            z-index: 1000000;
+        }
+    }
+}
+
+#detail, #not-found {
+    padding: 20px;
+    a {
+        color: $color-dark;
+        border: 1px solid;
+        border-radius: 10px;
+        padding: 8px;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    margin: auto;
+    padding: 15px;
+    background-color: $color-light;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    color: $color-dark;
+    legend {
+        text-align: center;
+        font-size: 2rem;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+    input {
+        margin-bottom: 10px;
+        border-radius: 5px;
+        padding: 3px;
+        font-size: 2rem;
+    }
+    button[type="submit"] {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: $color-success;
+        color: $color-dark;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: 0;
+        box-shadow: 0px 1px 5px 0 rgba(0, 0, 0, 0.5);
+        font-size: 1.6rem;
+    }
+    a {
+        display: block;
+        width: fit-content;
+        margin: 15px auto 0;
+        color: $color-dark;
+        color: royalblue;
+        font-weight: bold;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+input[type="search"] {
+    padding: 10px;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid $color-dark;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.cta-logout {
+    cursor: pointer;
+    background-color: $color-light;
+    margin: 8px;
+    padding: 7px;
+    border: 0;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    color: $color-dark;
+    &:hover {
+        background-color: $color-light;
+        color: $color-dark;
+        border-radius: 5px;
+    }
+}
+
+.cta-menu {
+    border: 1px solid $color-light;
+    background-color: $color-dark;
+    color: $color-light;
+    font-size: 3rem;
+    padding: 5px;
+    border-radius: 5px;
+}

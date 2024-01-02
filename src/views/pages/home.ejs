@@ -1,0 +1,24 @@
+<main id="home">
+   
+    <section>
+        <h2>Retrouve tes héros préférés !</h2>
+        <div class="character-container">
+            <% for(const data of randomCharacters) { %>
+            <a
+                href="/liste-personnages/<%= data.id %>"
+                className="cta-modal"
+                title="vers la fiche de détail"
+            >
+                <figure>
+                    <figcaption><%= data.title1%></figcaption>
+
+                    <FontAwesomeIcon icon="faFileLines" className="icon" />
+                    <img src="/img/<%= data.src %>" alt="<%= data.alt %>" />
+                </figure>
+            </a>
+            <% } %>
+        </div>
+    </section>
+
+    <script type="module" src="/js/search.js"></script>
+</main>
