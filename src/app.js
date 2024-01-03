@@ -37,22 +37,25 @@ app.use("/authentification", authRouter);
 app.use("/liste-personnages", characterRouter);
 
 app.get("/", (req, res) => {
-    const dataCopy = [...datas];
-    const randomCharacters = [];
-    for (let i = 3; i > 0; i--) {
-        let index = Math.floor(Math.random() * dataCopy.length);
-        randomCharacters.push(dataCopy[index]);
-        dataCopy.splice(index, 1);        
-    }
-    
-    // const indices = new Set();
-    // while (indices.size < 3) {
-    //     indices.add(Math.floor(Math.random() * datas.length));
+    // const dataCopy = [...datas];
+    // const randomCharacters = [];
+    // for (let i = 3; i > 0; i--) {
+    //     let index = Math.floor(Math.random() * dataCopy.length);
+    //     randomCharacters.push(dataCopy[index]);
+    //     dataCopy.splice(index, 1);        
     // }
-    // const randomCharacters = sortedDatas(
-    //     Array.from(indices).map((index) => datas[index]),
-    //     "asc"
-    // );
+    
+    const indices = new Set(); // [2,4,9]
+    while (indices.size < 3) {
+        indices.add(Math.floor(Math.random() * datas.length));
+    }
+    const randomCharacters = sortedDatas(
+        Array.from(indices).map((index) => datas[index]), // datas[2], qui va se faire injecter dans un tableau et ainsi de suite pour le nombre d'éléments dans le set
+        "asc"
+    );
+    // Array.from permet de transformer un set en tableau
+    // map permet de transformer un tableau en un autre tableau
+    // const randomCharacters = sortedDatas([{id: 2}, {id: 4}, {id: 9}], "asc"); 
     
     res.render("layout/main", { template: "../pages/home", randomCharacters: sortedDatas(randomCharacters, "asc")});
 });
