@@ -5,7 +5,6 @@ toggleMenuBtn.addEventListener("click", () => {
     menu.classList.toggle("hide");
 });
 
-
 const navLinks = document.querySelectorAll('#menu a');
 
 const currentUrl = window.location.pathname;

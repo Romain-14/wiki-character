@@ -1,5 +1,5 @@
 export default (datas, sort) => {
-    console.log(datas)
+    console.log(datas);
     if (sort === "desc")
         return datas.sort((a, b) => b.title1.localeCompare(a.title1));
     else if (sort === "asc") {

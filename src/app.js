@@ -92,6 +92,11 @@ app.get("/api/characters", (req, res) => {
     res.json(characterInfo);
 });
 
+// pour une page not found
+app.get("*", (req, res) => {
+    res.status(404).render("layout/main", { template: "../pages/404" });
+});
+
 app.listen(PORT, () =>
     console.log("server running at http://localhost:" + PORT)
 );
